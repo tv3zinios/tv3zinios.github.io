@@ -31,12 +31,12 @@
 
         // Parse sources
         Object.entries(json.sources).forEach(([sourceType, source]) => {
-            playlist.file[sourceType.toLowerCase()] = source[0].src;
+            playlist.file[sourceType.toLowerCase()] = 'https://cors.bridged.cc/' + source[0].src;
         });
 
         // Parse drm
         Object.entries(json.drm).forEach(([drmType, drm]) => {
-            const drmSrc = drm.src;
+            const drmSrc = 'https://cors.bridged.cc/' + drm.src;
 
             playlist.drm[drmType.toLowerCase()] = drmType === 'FAIRPLAY'
                 ? {src: drmSrc, cert: drm.cert}
@@ -76,8 +76,6 @@
             link.innerText = ep.title;
             link.onclick = (e) => {
                 loadEpisode(ep.id);
-
-                e.preventDefault();
             };
 
             li.append(link);
